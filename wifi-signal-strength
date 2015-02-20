@@ -4,7 +4,6 @@
 # set -g status-right: '#(wifi-signal-strength)'
 #
 
-all_signal=(▁ ▃ ▅ ▇ )
 
 current=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | egrep "agrCtlRSSI|state|lastTxRate| SSID" | cut -d: -f2 | tr "\\n" ";" | sed 's/^[ ]//g'`
 
@@ -23,17 +22,4 @@ then
   echo "(WIFI off)"
 fi
 
-signal="( "
-for (( j = 0; j < 4; j++ ))
-do
-  if [[ $j -eq 0 && $strength -gt -94 ]] || [[ $j -eq 1 && $strength -gt -92 ]] ||
-     [[ $j -eq 2 && $strength -gt -86 ]] || [[ $j -eq 3 && $strength -gt -79 ]]
-  then
-    signal="${signal}${all_signal[$j]} "
-  else
-    signal="${signal}  "
-  fi
-done
-signal="${signal} )"
-
-echo "${name} ${bandwidth}Mbs ${signal}"
+echo "${name} ${bandwidth}Mbs"
