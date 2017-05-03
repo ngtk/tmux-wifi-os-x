@@ -1,9 +1,4 @@
 #!/bin/sh
-#
-# Use: Put something this in your .tmux.conf file
-# set -g status-right: '#(wifi-signal-strength)'
-#
-
 
 current=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | egrep "agrCtlRSSI|state|lastTxRate| SSID" | cut -d: -f2 | tr "\\n" ";" | sed 's/^[ ]//g'`
 
